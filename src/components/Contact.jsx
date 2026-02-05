@@ -182,7 +182,7 @@ const Contact = () => {
 
                             <div className="space-y-4">
                                 <motion.a
-                                    href="tel:+919934824053"
+                                    href="tel:+919934XXXXXX"
                                     className="flex items-center gap-4 text-slate-300 hover:text-emerald-500 transition-colors duration-300 group"
                                     whileHover={{ x: 5 }}
                                 >

@@ -33,7 +33,7 @@ function App() {
       {/* Footer */}
       <footer className="py-8 text-center border-t border-white/5 bg-zinc-900">
         <p className="text-slate-500 text-sm">
-          © {new Date().getFullYear()} Janmjay Prajapati. Built with React & Tailwind CSS
+          © {new Date().getFullYear()} Janmjay Prajapati
         </p>
       </footer>
     </div>
