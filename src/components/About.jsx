@@ -23,7 +23,7 @@ const About = () => {
                     transition={{ delay: 0.2, duration: 0.6 }}
                 >
                     <p className="text-lg text-slate-300 leading-relaxed text-center max-w-4xl mx-auto">
-                        I'm a Computer Science & Engineering student from <span className="text-emerald-400">Lohardaga, Jharkhand, India</span>, with a passion for building full-stack applications.
+                        I'm a Computer Science & Engineering student from <span className="text-emerald-400">Chandigarh University, Punjab, India</span>, with a passion for building full-stack applications.
                         Skilled in Java, JavaScript, React.js, and Spring Boot, I enjoy creating scalable systems and
                         solving complex problems. I have experience with database management, version control, and cloud platforms.
                     </p>
