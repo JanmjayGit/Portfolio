@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { GraduationCap, MapPin, School } from 'lucide-react';
 
+// About section component
 const About = () => {
     return (
         <section className="min-h-screen flex items-center justify-center px-6 py-20">
