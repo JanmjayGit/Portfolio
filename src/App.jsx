@@ -14,16 +14,16 @@ function App() {
         <Hero />
       </div>
 
-      <div id="about">
-        <About />
+      <div id="projects">
+        <Projects />
       </div>
 
       <div id="tech-stack">
         <TechStack />
       </div>
 
-      <div id="projects">
-        <Projects />
+      <div id="about">
+        <About />
       </div>
 
       <div id="contact">
