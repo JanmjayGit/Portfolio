@@ -1,11 +1,55 @@
 @import "tailwindcss";
 
+@theme {
+  --color-bg: #070b14;
+  --color-surface: #0f1623;
+  --color-surface-2: #151d2e;
+  --color-fg: #e8eefc;
+  --color-muted: #94a3b8;
+  --color-accent: #22d3ee;
+  --color-accent-dim: #0891b2;
+  --color-violet: #818cf8;
+  --color-line: rgb(148 163 184 / 0.18);
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
 @layer base {
-  body {
-    @apply bg-zinc-900 text-slate-300 font-sans antialiased;
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
-  * {
-    @apply scroll-smooth;
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 35%, transparent);
+    color: var(--color-fg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@utility mesh-fallback {
+  background-color: #070b14;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgb(34 211 238 / 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgb(129 140 248 / 0.1), transparent),
+    linear-gradient(to right, rgb(148 163 184 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(148 163 184 / 0.06) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
 }

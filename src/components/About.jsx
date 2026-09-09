@@ -1,93 +1,103 @@
-import { motion } from 'framer-motion';
-import { GraduationCap, MapPin, School } from 'lucide-react';
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { profile } from "../data/profile";
+import { skills } from "../data/skills";
+import { fadeUp, stagger, viewport } from "../lib/motion";
 
-// About section component
-const About = () => {
-    return (
-        <section className="min-h-screen flex items-center justify-center px-6 py-20">
-            <div className="max-w-7xl w-full">
-                <motion.h2
-                    className="text-4xl md:text-5xl font-bold text-white text-center mb-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    About Me
-                </motion.h2>
+const MotionLi = motion.li;
+const MotionP = motion.p;
+const MotionDiv = motion.div;
 
-                <motion.div
-                    className="space-y-8"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                >
-                    <p className="text-lg text-slate-300 leading-relaxed text-center max-w-4xl mx-auto">
-                        I'm a Computer Science & Engineering student from <span className="text-emerald-400">Chandigarh University, Punjab, India</span>, with a passion for building full-stack applications.
-                        Skilled in Java, JavaScript, React.js, and Spring Boot, I enjoy creating scalable systems and
-                        solving complex problems. I have experience with database management, version control, and cloud platforms.
-                    </p>
+function CountUp({ value, suffix }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const [shown, setShown] = useState(0);
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-                        {/* Education Card 1 */}
-                        <motion.div
-                            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 hover:border-emerald-500/50 transition-colors duration-300"
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                            <div className="flex items-center gap-3 mb-4">
-                                <GraduationCap className="w-6 h-6 text-emerald-500" />
-                                <h3 className="text-xl font-semibold text-white">University</h3>
-                            </div>
-                            <p className="text-slate-300 mb-2">
-                                <span className="text-white font-medium">Chandigarh University</span>
-                            </p>
-                            <p className="text-slate-300 text-sm">B.E. Computer Science & Engineering</p>
-                            <p className="text-slate-300 text-sm">CGPA: 7.38</p>
-                            <p className="text-slate-300 text-sm mt-2">Punjab, India | 2022 - 2026</p>
-                        </motion.div>
+  useEffect(() => {
+    if (!inView) {
+      return undefined;
+    }
 
-                        {/* Education Card 2 */}
-                        <motion.div
-                            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 hover:border-emerald-500/50 transition-colors duration-300"
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                            <div className="flex items-center gap-3 mb-4">
-                                <School className="w-6 h-6 text-emerald-500" />
-                                <h3 className="text-xl font-semibold text-white">12th Grade</h3>
-                            </div>
-                            <p className="text-slate-300 mb-2">
-                                <span className="text-white font-medium">DAV Kapildev Public School</span>
-                            </p>
-                            <p className="text-slate-300 text-sm">Senior Secondary</p>
-                            <p className="text-slate-300 text-sm">Score: 79.8%</p>
-                            <p className="text-slate-300 text-sm mt-2">Ranchi, India | 2020 - 2022</p>
-                        </motion.div>
+    const started = performance.now();
+    const duration = 900;
+    let frame = 0;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-                        {/* Education Card 3 */}
-                        <motion.div
-                            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 hover:border-emerald-500/50 transition-colors duration-300"
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                            <div className="flex items-center gap-3 mb-4">
-                                <School className="w-6 h-6 text-emerald-500" />
-                                <h3 className="text-xl font-semibold text-white">10th Grade</h3>
-                            </div>
-                            <p className="text-slate-300 mb-2">
-                                <span className="text-white font-medium">ST Columbus Public School</span>
-                            </p>
-                            <p className="text-slate-300 text-sm">Secondary School</p>
-                            <p className="text-slate-300 text-sm">Score: 88%</p>
-                            <p className="text-slate-300 text-sm mt-2">Ranchi, India | 2019 - 2020</p>
-                        </motion.div>
-                    </div>
-                </motion.div>
+    const tick = (now) => {
+      const progress = reduced ? 1 : Math.min(1, (now - started) / duration);
+      setShown(Math.round(value * progress));
+      if (progress < 1) {
+        frame = requestAnimationFrame(tick);
+      }
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [inView, value]);
+
+  return (
+    <span ref={ref}>
+      {shown}
+      {suffix}
+    </span>
+  );
+}
+
+export default function About() {
+  const preview = [...skills.languages, ...skills.frontend, ...skills.backend].slice(0, 8);
+
+  return (
+    <section id="about" aria-labelledby="about-heading" className="px-4 py-20 md:px-6">
+      <div className="mx-auto max-w-6xl">
+        <MotionDiv variants={stagger} initial="hidden" whileInView="show" viewport={viewport}>
+          <MotionP variants={fadeUp} className="font-mono text-xs uppercase tracking-[0.25em] text-accent">
+            About
+          </MotionP>
+          <motion.h2 id="about-heading" variants={fadeUp} className="mt-3 text-3xl font-semibold sm:text-4xl">
+            A builder who likes the whole stack
+          </motion.h2>
+          <p className="mt-4 inline-flex border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-xs text-accent">
+            {profile.companyLabel}
+          </p>
+        </MotionDiv>
+
+        <div className="mt-8 max-w-3xl space-y-4 text-muted">
+          {profile.summary.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+
+        <motion.ul
+          className="mt-10 flex flex-wrap gap-2"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewport}
+        >
+          {preview.map((skill) => (
+            <MotionLi
+              key={skill}
+              variants={fadeUp}
+              className="border border-line bg-surface px-3 py-1.5 font-mono text-xs text-fg"
+            >
+              {skill}
+            </MotionLi>
+          ))}
+        </motion.ul>
+
+        <dl className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {profile.stats.map((stat) => (
+            <div key={stat.label} className="border border-line bg-surface px-5 py-6">
+              <dt className="font-mono text-xs uppercase tracking-widest text-muted">{stat.label}</dt>
+              <dd className="mt-2 text-3xl font-semibold text-accent">
+                <CountUp value={stat.value} suffix={stat.suffix} />
+              </dd>
             </div>
-        </section>
-    );
-};
+          ))}
+        </dl>
 
-export default About;
+        <p className="mt-8 font-mono text-sm text-violet">// Fun fact: {profile.funFact}</p>
+      </div>
+    </section>
+  );
+}
