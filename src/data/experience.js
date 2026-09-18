@@ -2,11 +2,11 @@ export const experience = [
   {
     company: "Independent",
     role: "Full-Stack Developer",
-    startDate: "2023",
+    startDate: "2026",
     endDate: "Present",
     description:
-      "Designing and shipping personal product work: travel, storage, finance, and AI-assisted tools. React/Next.js frontends, Spring Boot APIs, and production deploys on Vercel.",
-    tech: ["React", "Next.js", "Spring Boot", "TypeScript", "PostgreSQL"],
+      "Designing and shipping personal product work: travel, storage, finance, and AI-assisted tools. React/Next.js frontends, Spring Boot APIs, and production deploys on AWS EC2.",
+    tech: ["React.js", "Next.js", "Spring Boot", "TypeScript", "PostgreSQL", "Docker", "AWS"],
   },
   {
     company: "Chandigarh University",

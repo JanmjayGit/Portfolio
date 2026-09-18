@@ -13,8 +13,8 @@ export const profile = {
   bio: "I build scalable full-stack web applications with React, Next.js, Spring Boot, and modern cloud tooling. I care about clean APIs, reliable data layers, and interfaces that stay fast on real devices.",
   summary: [
     "I'm a 2026 Computer Science & Engineering graduate from Chandigarh University, now based in Bengaluru. Most of my shipped projects pair a React or Next.js frontend with Spring Boot APIs and a relational or document store.",
-    "I like taking a feature from schema to UI: auth, payments, file storage, GraphQL/REST contracts, and the unglamorous parts like webhooks and query performance. Java, TypeScript, React, and Spring Boot are the tools I reach for first — with AI-assisted workflows in Cursor, Claude, and ChatGPT to move faster without skipping review.",
-    "I'm looking for full-time full-stack roles in Bengaluru where I can own slices of a product — not just tickets — and keep learning distributed systems without over-engineering the first version.",
+    "I like taking a feature from schema to UI: auth, payments, file storage, GraphQL/REST contracts, and the unglamorous parts like webhooks and query performance. Java, TypeScript, React, and Spring Boot are the tools I reach for first with AI-assisted workflows in Cursor, Claude, and ChatGPT to move faster without skipping review.",
+    "I'm looking for full-time full-stack roles in Bengaluru where I can own slices of a product not just tickets but keep learning distributed systems without over-engineering the first version.",
   ],
   funFact: "I still sketch API contracts in a text file before I open the IDE.",
   stats: [
@@ -28,7 +28,7 @@ export const profile = {
   resumePath: "/resume.pdf",
   resumeFileName: "Janmjay_Prajapati_FullStack_Resume.pdf",
   siteUrl: "https://janmjay.dev",
-  responseTime: "I usually reply within 24 hours.",
+  responseTime: "I usually reply within 12 hours.",
   availability:
     "Open to full-time, freelance, and consulting work in Bengaluru.",
   social: {
